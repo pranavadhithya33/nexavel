@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 800" width="100%" height="100%">
+    <defs>
+      <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#1E293B" />
+        <stop offset="50%" stop-color="#0F172A" />
+        <stop offset="100%" stop-color="#020617" />
+      </linearGradient>
+      <linearGradient id="skinGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#FDEDD9" />
+        <stop offset="100%" stop-color="#E2B997" />
+      </linearGradient>
+      <linearGradient id="jacketGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" stop-color="#334155" />
+        <stop offset="100%" stop-color="#0F172A" />
+      </linearGradient>
+    </defs>
+    <!-- Background -->
+    <rect width="600" height="800" fill="url(#bgGrad)" />
+    <!-- City bokeh lights -->
+    <circle cx="100" cy="150" r="40" fill="#E23636" opacity="0.15" />
+    <circle cx="500" cy="200" r="60" fill="#2B3784" opacity="0.2" />
+    <circle cx="450" cy="500" r="80" fill="#E23636" opacity="0.1" />
+
+    <!-- Peter Parker Body / Clothes -->
+    <path d="M 120 800 Q 200 500 300 500 Q 400 500 480 800 Z" fill="url(#jacketGrad)" />
+    <path d="M 230 520 L 300 650 L 370 520 L 300 500 Z" fill="#94A3B8" />
+
+    <!-- Neck & Face -->
+    <rect x="260" y="380" width="80" height="130" fill="url(#skinGrad)" rx="10" />
+    <!-- Face Contour -->
+    <path d="M 200 240 Q 200 420 300 420 Q 400 420 400 240 Q 400 150 300 150 Q 200 150 200 240 Z" fill="url(#skinGrad)" />
+
+    <!-- Classic Tobey Maguire Hair -->
+    <path d="M 185 220 C 185 100 240 90 300 90 C 370 90 415 110 415 220 C 400 160 360 140 300 140 C 240 140 200 160 185 220 Z" fill="#3D2314" />
+    <path d="M 220 140 Q 280 180 300 150 Q 340 180 380 140 Q 310 120 220 140 Z" fill="#29160B" />
+
+    <!-- Eyes -->
+    <ellipse cx="250" cy="250" rx="18" ry="12" fill="#FFF" />
+    <circle cx="252" cy="250" r="8" fill="#3B82F6" />
+    <circle cx="254" cy="248" r="3" fill="#FFF" />
+
+    <ellipse cx="350" cy="250" rx="18" ry="12" fill="#FFF" />
+    <circle cx="348" cy="250" r="8" fill="#3B82F6" />
+    <circle cx="346" cy="248" r="3" fill="#FFF" />
+
+    <!-- Eyebrows -->
+    <path d="M 225 225 Q 255 220 280 230" fill="none" stroke="#29160B" stroke-width="4" stroke-linecap="round" />
+    <path d="M 375 225 Q 345 220 320 230" fill="none" stroke="#29160B" stroke-width="4" stroke-linecap="round" />
+
+    <!-- Nose & Smile -->
+    <path d="M 300 250 L 295 300 L 310 305" fill="none" stroke="#C49A78" stroke-width="3" stroke-linecap="round" />
+    <path d="M 260 345 Q 300 365 340 345" fill="none" stroke="#A86B52" stroke-width="4" stroke-linecap="round" />
+
+    <!-- Camera Strap across chest -->
+    <path d="M 140 600 L 440 780" stroke="#0F172A" stroke-width="24" stroke-linecap="round" />
+    <path d="M 140 600 L 440 780" stroke="#E23636" stroke-width="4" stroke-dasharray="10 5" />
+    
+    <!-- Title Overlay -->
+    <text x="300" y="740" font-family="sans-serif" font-size="22" font-weight="bold" fill="#FFF" text-anchor="middle" letter-spacing="3">PETER PARKER</text>
+    <text x="300" y="765" font-family="sans-serif" font-size="14" fill="#94A3B8" text-anchor="middle" letter-spacing="1">THE HERO BEHIND NEXAVEL</text>
+  </svg>

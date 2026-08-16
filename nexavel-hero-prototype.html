@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexavel — Hero Suit Reveal Prototype</title>
+  <style>
+    :root {
+      --spider-red: #E23636;
+      --spider-blue: #2B3784;
+      --spider-dark: #0a0a0f;
+      --spider-gray: #1a1a24;
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background-color: var(--spider-dark);
+      color: #ffffff;
+      font-family: system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow-x: hidden;
+    }
+    header {
+      position: absolute;
+      top: 20px;
+      left: 5%;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    header h1 {
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+    .hero-container {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      width: 90%;
+      max-width: 1200px;
+      gap: 40px;
+      padding: 40px 0;
+    }
+    @media (max-width: 900px) {
+      .hero-container {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+    .hero-text {
+      flex: 1;
+      max-width: 500px;
+    }
+    .hero-text h2 {
+      font-size: 48px;
+      line-height: 1.1;
+      margin-bottom: 20px;
+      font-weight: 900;
+    }
+    .accent {
+      background: linear-gradient(135deg, var(--spider-red), var(--spider-blue));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-text p {
+      color: rgba(255,255,255,0.7);
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 16px 32px;
+      background: linear-gradient(90deg, var(--spider-red), #99000D);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+      border-radius: 8px;
+      text-decoration: none;
+      box-shadow: 0 10px 30px rgba(226, 54, 54, 0.4);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 15px 40px rgba(226, 54, 54, 0.6);
+    }
+    .reveal-box {
+      position: relative;
+      width: 420px;
+      height: 560px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 0 50px rgba(226, 54, 54, 0.25), 0 0 80px rgba(43, 55, 132, 0.2);
+      touch-action: none;
+      user-select: none;
+    }
+    @media (max-width: 500px) {
+      .reveal-box {
+        width: 320px;
+        height: 440px;
+      }
+    }
+    .layer {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .top-layer {
+      z-index: 2;
+      --mouse-x: 50%;
+      --mouse-y: 50%;
+      mask-image: radial-gradient(circle 140px at var(--mouse-x) var(--mouse-y), transparent 0%, transparent 65%, black 100%);
+      -webkit-mask-image: radial-gradient(circle 140px at var(--mouse-x) var(--mouse-y), transparent 0%, transparent 65%, black 100%);
+      transition: mask-image 0.05s ease-out, -webkit-mask-image 0.05s ease-out;
+    }
+    .hint {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 10;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(10px);
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid rgba(226, 54, 54, 0.4);
+      pointer-events: none;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <svg width="36" height="36" viewBox="0 0 60 60">
+      <circle cx="30" cy="30" r="28" stroke="#E23636" stroke-width="3" fill="none" />
+      <line x1="30" y1="2" x2="30" y2="58" stroke="#E23636" stroke-width="1.5" opacity="0.6" />
+      <line x1="2" y1="30" x2="58" y2="30" stroke="#E23636" stroke-width="1.5" opacity="0.6" />
+      <ellipse cx="30" cy="30" rx="4" ry="5" fill="#E23636" />
+    </svg>
+    <h1>NEXAVEL</h1>
+  </header>
+
+  <main class="hero-container">
+    <div class="hero-text">
+      <h2>Behind Every Great Brand <span class="accent">Is a Hero</span></h2>
+      <p>Move your cursor over Spider-Man's suit to reveal Peter Parker underneath. We swing into action when your business needs digital growth.</p>
+      <a href="#services" class="btn">Explore Our Powers &rarr;</a>
+    </div>
+
+    <div class="reveal-box" id="revealBox">
+      <!-- Bottom Layer: Peter Parker -->
+      <img class="layer" src="public/images/peter-parker.jpg" alt="Peter Parker">
+
+      <!-- Top Layer: Spider-Man Suit -->
+      <img class="layer top-layer" id="topLayer" src="public/images/spiderman-suit.jpg" alt="Spider-Man Suit">
+
+      <div class="hint" id="hint">Move cursor to reveal the hero</div>
+    </div>
+  </main>
+
+  <script>
+    const box = document.getElementById('revealBox');
+    const topLayer = document.getElementById('topLayer');
+    const hint = document.getElementById('hint');
+
+    let targetX = 50, targetY = 50;
+    let currentX = 50, currentY = 50;
+    const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+
+    if (isTouch) {
+      hint.textContent = 'Touch & drag to reveal';
+    }
+
+    function updatePos(clientX, clientY) {
+      const rect = box.getBoundingClientRect();
+      targetX = ((clientX - rect.left) / rect.width) * 100;
+      targetY = ((clientY - rect.top) / rect.height) * 100;
+    }
+
+    box.addEventListener('mousemove', (e) => updatePos(e.clientX, e.clientY));
+    box.addEventListener('mouseleave', () => { targetX = 50; targetY = 50; });
+
+    box.addEventListener('touchmove', (e) => {
+      e.preventDefault();
+      if (e.touches[0]) updatePos(e.touches[0].clientX, e.touches[0].clientY);
+    }, { passive: false });
+
+    // Smooth Lerp Animation Frame Loop
+    function animate() {
+      currentX += (targetX - currentX) * 0.15;
+      currentY += (targetY - currentY) * 0.15;
+      topLayer.style.setProperty('--mouse-x', `${currentX}%`);
+      topLayer.style.setProperty('--mouse-y', `${currentY}%`);
+      requestAnimationFrame(animate);
+    }
+    requestAnimationFrame(animate);
+  </script>
+</body>
+</html>
